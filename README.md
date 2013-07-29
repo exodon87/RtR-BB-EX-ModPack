@@ -2,11 +2,11 @@ RtR-Epoch-M-BB-Chernarus-MiniPack
 =================
 v1.0.1.5-m-bb-ex-0.1-beta
 =================
-Epoch 1.0.1.5 [by  vbawol  / modified by me]
-(no "Spawn as Zombie" / no "Break Tool" / all Objects tied to PlayerUID [cd-key] instead of CharacterID [serverside created])
+Epoch 1.0.1.5 by  vbawol  and modified by me
+no "Spawn as Zombie" / no "Break Tool" / all Objects tied to PlayerUID [cd-key] instead of CharacterID [serverside created]
 
-Base Building 1.2  [By  Daimyo21  and  kikyou2  (and modified / fixed by me)]
-(with improvements 0.3 and overall 56 buildable objects)
+Base Building 1.2  by  Daimyo21  and  kikyou2  and modified / fixed by me
+with improvements 0.3 and overall 56 buildable objects
 
 
 And some useful plugins:
