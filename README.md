@@ -1,8 +1,8 @@
-======================================================================================================================
-==================================================RtR-BB-EX-ModPack===================================================
-======================================================================================================================
-===Server and Mission pbo's for Epoch 1.0.1.5 with Modified epoch features, BaseBuilding, and many more plugins....===
-======================================================================================================================
+
+RtR-BB-EX-ModPack
+=================
+Server and Mission pbo's for Epoch 1.0.1.5 with Modified epoch features, BaseBuilding, and many more plugins....
+=================
 RtR-Epoch-M-BB-Chernarus-MiniPack
   v1.0.1.5-m-bb-ex-0.1-beta (first public version of this ModPack)
   
