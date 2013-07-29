@@ -2,14 +2,13 @@ RtR-Epoch-M-BB-Chernarus-MiniPack
 =================
 v1.0.1.5-m-bb-ex-0.1-beta
 =================
-  
-  
-Epoch 1.0.1.5 Modified  [by  vbawol  / modified by me]
+Epoch 1.0.1.5 [by  vbawol  / modified by me]
 (no "Spawn as Zombie" / no "Break Tool" / all Objects tied to PlayerUID [cd-key] instead of CharacterID [serverside created])
+
 Base Building 1.2  [By  Daimyo21  and  kikyou2  (and modified / fixed by me)]
 (with improvements 0.3 and overall 56 buildable objects)
-  
-  
+
+
 And some useful plugins:
 Self Bloodbag  [by  Krixes]
 Tow  (no Heli-Lift cause of critical bugs)  [by  R3F]
