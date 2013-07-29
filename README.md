@@ -1,6 +1,6 @@
 RtR-Epoch-M-BB-Chernarus-MiniPack
 =================
-v1.0.1.5-m-bb-ex-0.1-beta (first public version of this ModPack)
+v1.0.1.5-m-bb-ex-0.1-beta
 =================
   
   
