@@ -80,7 +80,6 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 			if (isServer) then {
 			dayzDeleteObj call local_deleteObj;
 			};
-		};
 		sleep 0.5;
 		playsound "beep";
 		sleep 0.5;

@@ -17,9 +17,9 @@ for "_i" from 0 to (count _convertInput - 1) do {_convertInput set [_i, (_conver
 //hint format["Keycode: %1 | CodeInput: %2", _code, (toString _convertInput)];
 // compare arrays to see if code matches
 	if (typeOf(_panel) == "Infostand_2_EP1") then {
-	_validMatch = [_code, (toString _convertInput)] call BIS_fnc_areEqual;
+	_validMatch = [_code, _numberinput] call BIS_fnc_areEqual;
 	} else {
-	_validObjectCode = [_code, (toString _convertInput)] call BIS_fnc_areEqual;
+	_validObjectCode = [_code, _numberinput] call BIS_fnc_areEqual;
 	};
 	
 // ------------------------------------------------------------------------kikyou2 Panel Admin Override Start---------------------------------------------------------------------
