@@ -15,6 +15,7 @@ _inputCode = _this select 1;
 _convertInput =+ _inputCode;
 for "_i" from 0 to (count _convertInput - 1) do {_convertInput set [_i, (_convertInput select _i) + 48]};
 //hint format["Keycode: %1 | CodeInput: %2", _code, (toString _convertInput)];
+_numberinput = parseNumber((tostring _convertInput));
 // compare arrays to see if code matches
 	if (typeOf(_panel) == "Infostand_2_EP1") then {
 	_validMatch = [_code, _numberinput] call BIS_fnc_areEqual;
@@ -29,8 +30,8 @@ if ((getPlayerUID player) in ["48767622","48779974"]) then { //making possible t
             _validMatch = true;
         } else {
             _validObjectCode = true;
-        }; //123123146465456
-    }; //4644564564
+        };
+    };
 // ------------------------------------------------------------------------kikyou2 Panel Admin Overide End------------------------------------------------------------------------
 
 
