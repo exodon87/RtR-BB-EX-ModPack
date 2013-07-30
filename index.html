@@ -5,12 +5,9 @@
 <link href="https://fonts.googleapis.com/css?family=Chivo:900" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-<!--[if lt IE 9]> <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]--><title>RtR-Epoch-BB-Ex-Pack by exodon87</title>
-
-</head>
-
-  <body>
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print"><!--[if lt IE 9]> <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+<title>RtR-Epoch-BB-Ex-Pack by exodon87</title></head>
+<body>
 <div id="container">
 <div style="text-align: center;"> </div>
 <div class="inner">
@@ -37,21 +34,31 @@ on GitHub</span></a> </section>
 </ul><span style="font-weight: bold; color: black;">Base Building 1.2</span> by Daimyo21 and modified / fixed by Exo<br><div style="margin-left: 40px;"><ul><li><span style="font-weight: bold; color: rgb(2, 2, 2);">+20 Buildables</span> added by Exo</li></ul></div><span style="font-weight: bold; color: black;">BB1.2
 Improvements 0.3</span> by kikyou2 and modified / fixed by Exo<br>
 
-<span style="font-weight: bold; color: black;"><br></span><span style="font-weight: bold; color: rgb(3, 3, 3);">And some useful plugins:</span><br>
+<span style="font-weight: bold; color: black;"><br></span><h4><span style="font-weight: bold; color: rgb(3, 3, 3);">And some useful plugins:</span></h4>
 <ul style="margin-left: 40px;"><li>
 Self Bloodbag&nbsp; [by&nbsp; Krixes]</li><li>Tow&nbsp; (no Heli-Lift cause of critical bugs)&nbsp;
 [by&nbsp; R3F]</li><li>Animated Plane Crash Sites&nbsp; [by&nbsp; Gorsy]</li><li>AN2 Plane Carepackage Drops&nbsp; [by&nbsp; Gorsy]</li><li>Illuminant_Tower has now working lights&nbsp; [by&nbsp; axeman]</li><li>Safezone script for Trader Cities&nbsp; [by&nbsp;
 ghostphantom172]</li><li>Custom Loading Screen&nbsp; [© 2013 by&nbsp; exodon] (your ARE allowed to change it)</li></ul><p></p>
-<br><span style="color: rgb(3, 3, 3); font-weight: bold;">Known Bugs / Issues:&nbsp;</span>
+<br><h4><span style="color: rgb(3, 3, 3); font-weight: bold;">Known Bugs / Issues:&nbsp;</span></h4>
 
-<ul style="margin-left: 40px;"><li>Camo Nettings and all "Towers" wich has been build with
-Base Building aren't removeable cause some messed up code (Camo
-Nettings) and a too far away "center point" (Towers) wich cause that u
-cant target the point on the towers to show up the remove action in the
-scroll menu... but i'm already working on a fix for this issue...<br></li><li>Tag as friendly isnt working due some changes in the epoch
-code... bug localised but haven't found a way to fix it....</li></ul>
-
-<p style="margin-left: 40px;"><br></p><p><span style="font-weight: bold; color: rgb(2, 2, 2);">Important Notes:<br></span></p><div style="margin-left: 40px;">
+<ul style="margin-left: 40px;"><li>camo nettings removal not working</li><li>"tag friendly" not working</li><li>buildable objects with usable ladders cant be removed...</li><li>towed
+vehicles position will be reset after a restart when no player has
+entered the vehicle after untowing it cause the server isnt updating
+the position to the database while towing... (when u enter the car u
+have towed once, it updates the position of the car in the database)</li></ul><br><h4>Patch Notes:</h4><p style="margin: 0px; color: rgb(34, 34, 34); font-family: 'Helvetica Neue',Arial,Verdana,sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px;"><br></p><h4 style="text-decoration: underline; font-weight: normal; font-style: italic;">Beta 0.1</h4><ul><li>first Release... kind of "Open Beta Test"&nbsp;<br></li></ul><h4 style="font-weight: normal; text-decoration: underline; font-style: italic;">Beta 0.2</h4><ul><li>replaced some 1.0.1.4 epoch code with the missed 1.0.1.5 code (workbench and other things are now working...)</li><li>fixed
+a critical bug wich causes objects to reappear after server restarts,
+or they didnt disappeared after "removing" so the player was able to
+exploit unlimited materials</li><li>fixed a bug in the "edit code"
+function for infopanels wich were sometimes creating a duplicate with
+the new key... now it completly removes the old panel and build a new
+one at the same position with the entered code (also when players run
+around or whatever...)</li><li>fixed a bug in the way how the placed
+objects are placed after the restart wich has fixed the shifting on the
+most objects (not always!) and also it fixed the issue why zombies
+could run through some objects like containers, sandbags....</li><li>updated
+basebuilding code so it should work without the "deployable" table in
+the database, thats why i also removed the main sql file from the
+package... CleanupActions.sql is still available....</li><li>fixed many other small bugs...</li></ul><br><h4><span style="font-weight: bold; color: rgb(2, 2, 2);">Important Notes:</span><br></h4><div style="margin-left: 40px;">
 If u want to remove some plugins i have added, u should bring some
 knowledge in arma 2 scripting... cause i dont have that much time to
 write a tutorial how to activate each single function /
@@ -68,7 +75,7 @@ versions / contents...<br></div><p><br><br><br></p>
 
 
 
-<span style="font-weight: bold; color: rgb(1, 1, 1);">Package Content:</span><br><div style="margin-left: 40px; color: rgb(2, 2, 2);"><ul><li>dayz_server.pbo</li></ul></div><div style="margin-left: 40px;"><ul><li><span style="color: rgb(3, 3, 3);">dayz_11.epoch.chernarus.pbo</span> (you
+<h4><span style="font-weight: bold; color: rgb(1, 1, 1);">Package Content:</span></h4><div style="margin-left: 40px; color: rgb(2, 2, 2);"><ul><li>dayz_server.pbo</li></ul></div><div style="margin-left: 40px;"><ul><li><span style="color: rgb(3, 3, 3);">dayz_11.epoch.chernarus.pbo</span> (you
 maybe have to rename this... depends on wich instance u are using for
 your epoch... but this is the default name fromthe epoch release...)</li></ul></div><ul style="margin-left: 40px;"><li><span style="color: rgb(1, 1, 1);">Battleye Filters</span>&nbsp; (some modified filters, u wont
 get any kicks with these but maybe there is some risk to give hacker
@@ -79,8 +86,7 @@ hack" plugins u are using... i always recommend to use something like
 "AntiHax" or "Gotcha" but for those i cant give u any working files /
 filters...i think with your server rpt log and the other log files from
 your plugin you will be able to easily modify the filters of your "extra anti hack" to your needs
-to be able to play this mission without any kicks / bans...)</li></ul><p><br><span style="font-weight: bold; color: rgb(1, 1, 1);">Download:</span>&nbsp;
-RtR-Epoch-M-BB-Chernarus-MiniPack_0-1-beta.rar<br><br></p><span style="font-weight: bold; color: rgb(6, 6, 6);">How To Use / Install:</span><br><h6>(when u already have some experience with arma servers than u know what
+to be able to play this mission without any kicks / bans...)</li></ul><h4><span style="font-weight: bold; color: rgb(6, 6, 6);">How To Use / Install:</span></h4><h6>(when u already have some experience with arma servers than u know what
 you have to do)
 &nbsp;</h6><div style="margin-left: 40px;"><ul><li>Download and&nbsp; unpack&nbsp; the .rar file
 somewhere...<br></li><li>After unpacking the rar file open the folder&nbsp;
@@ -120,7 +126,7 @@ can have fun</li></ul></div><p></p>
 
 
 
-<p><span style="font-weight: bold; color: rgb(2, 2, 2);">Last Words:<br></span></p><div style="margin-left: 40px;">
+<h4><span style="font-weight: bold; color: rgb(2, 2, 2);">Last Words:<br></span></h4><div style="margin-left: 40px;">
 I hope i havent forget any credits or something else... and btw... sry
 if some words are written wrong or when u dont understand something
 directly but my english is not the best ^^ i know that ^^ but i'm fine
