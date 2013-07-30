@@ -1,2 +1,0 @@
-
-// Don't ban for BattleFieldClearance, it's injected by cheaters to legit players in order to disable clientside security.

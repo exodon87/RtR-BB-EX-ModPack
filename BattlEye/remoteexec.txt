@@ -1,2 +1,0 @@
-// ban for empty patterns, such:
-// 23.06.2013 17:16:25: Ruhzy (x.y.z.t:10202) deadbeef12341234 - #0 ""
