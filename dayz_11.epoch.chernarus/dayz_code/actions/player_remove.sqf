@@ -74,14 +74,6 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 	};
 	playsound "beep";
 	cutText [format["Please wait... Starting de-construction of object %1",typeof(_obj)], "PLAIN DOWN",1];
-	if (cursorTarget isKindOf "Infostand_2_EP1") then {
-			deletevehicle _obj; 	
-		dayzDeleteObj2 = [_objectID,_objectUID];
-	publicVariableServer "dayzDeleteObj2";
-	if (isServer) then {
-		dayzDeleteObj2 call local_deleteObj2;
-		};
-} else {
 		deletevehicle _obj; 	
 		dayzDeleteObj = [_objectID,_objectUID];
 		publicVariableServer "dayzDeleteObj";
@@ -89,9 +81,9 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 			dayzDeleteObj call local_deleteObj;
 			};
 		};
-		sleep 1;
+		sleep 0.5;
 		playsound "beep";
-		sleep 2;
+		sleep 0.5;
 		cutText [format["Refunding Owner for object %1",typeof(_obj)], "PLAIN DOWN",1];
 	if (_qtyT > 0) then {
 		for "_i" from 1 to _qtyT do { _result = [player,"ItemTankTrap"] call BIS_fnc_invAdd;  };
@@ -111,13 +103,13 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 	if (_qtyG > 0) then {
 		for "_i" from 1 to _qtyG do { _result = [player,"HandGrenade_west"] call BIS_fnc_invAdd;  };
 	};
-	sleep 2;
+	sleep 0.5;
 	playsound "beep";
 	sleep 0.5;
 	playsound "beep";
 	sleep 0.5;
 	cutText [format["Owner refunded for object %1",typeof(_obj)], "PLAIN DOWN",1];
-	sleep 2;
+	sleep 1;
 	breakout "exit";
 	};
 
