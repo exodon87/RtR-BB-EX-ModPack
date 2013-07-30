@@ -1,5 +1,5 @@
 private ["_charID","_friendlies","_rcharID","_rfriendlyTo","_tag","_player","_newTagList","_position","_rfriendlies","_tagList","_statusNew","_tagColor","_humanity","_status","_everyone"];
-_charID = player getVariable ["playerUID", "0"];
+_charID = player getVariable ["PlayerUID", "0"];
 _friendlies = player getVariable ["friendlies", []];
 _everyone = player getVariable ["everyone", []];
 _tagList = player getVariable ["tagList", []];

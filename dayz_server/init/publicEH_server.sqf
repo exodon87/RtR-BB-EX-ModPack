@@ -4,11 +4,13 @@ registerServerRpc = {
 		_this call registerBroadcastRpc; 
 	};
 };
+
 ["dayzDeath",			{ (_this select 1) call server_playerDied; } 			] call registerServerRpc;
 ["dayzDiscoAdd",		{ dayz_disco set [count dayz_disco,(_this select 1)]; }	] call registerServerRpc;
 ["dayzDiscoRem",		{ dayz_disco = dayz_disco - [(_this select 1)]; }		] call registerServerRpc;
 ["dayzPlayerSave",		{ (_this select 1) call server_playerSync; }			] call registerServerRpc;
 ["dayzPublishObj",		{ (_this select 1) call server_publishObj; }			] call registerServerRpc;
+["dayzPublishObj2",		{ (_this select 1) call server_publishObj2; }			] call registerServerRpc;
 ["dayzUpdateVehicle",	{ (_this select 1) call server_updateObject; }			] call registerServerRpc;
 ["dayzDeleteObj",		{ (_this select 1) call server_deleteObj; }				] call registerServerRpc;
 ["dayzDeleteObj2",		{ (_this select 1) call server_deleteObj2; }			] call registerServerRpc;

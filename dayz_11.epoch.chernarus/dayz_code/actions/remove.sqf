@@ -39,7 +39,7 @@ if(_IsNearPlot >= 1) then {
 	_nearestPole = _findNearestPole select 0;
 
 	// Find owner 
-	_ownerID = _nearestPole getVariable["CharacterID","0"];
+	_ownerID = _nearestPole getVariable["characterID","0"];
 
 	// check if friendly to owner
 	if(dayz_playerUID != _ownerID) then {

@@ -71,8 +71,8 @@ _currentSkin = typeOf(player);
 		player removeEventHandler ["AnimChanged", 0];
 		ehWall = player addEventHandler ["AnimChanged", { player call antiWall; } ];
 	};
-/*	// Remove CamoNets, (Not effecient but works)
-	if((isNull cursorTarget) && _hasToolbox && _canDo && !remProc && !procBuild && 
+	// Remove CamoNets, (Not effecient but works)
+	if((isNull cursorTarget) && _hasToolbox && 
 		(camoNetB_East distance player < 10 or 
 		camoNetVar_East distance player < 10 or 
 		camoNet_East distance player < 10 or 
@@ -80,7 +80,7 @@ _currentSkin = typeOf(player);
 		camoNetVar_Nato distance player < 10 or 
 		radar distance player < 30 or 
 		Ind_IlluminantTower distance player < 30 or 
-		camoNet_Nato distance player < 10)) then {
+		camoNet_Nato distance player < 10) && (_ownerID == dayz_playerUID)) then {
 		if (s_player_deleteCamoNet < 0) then {
 			s_player_deleteCamoNet = player addaction [("<t color=""#8E11F5"">" + ("Remove Camo Net or Tower next to you.") +"</t>"), "dayz_code\actions\player_remove.sqf",cursorTarget, 1, true, true, "", ""];
 		};
@@ -88,8 +88,8 @@ _currentSkin = typeOf(player);
 		player removeAction s_player_deleteCamoNet;
 		s_player_deleteCamoNet = -1;
 	};
-	// Remove CamoNets Owner removal, (Not effecient but works)
-		if(_canDo && removeObject && !procBuild && !remProc && 
+/*	// Remove CamoNets Owner removal, (Not effecient but works)
+		if(_canDo && removeObject && 
 		(camoNetB_East distance player < 10 or 
 		camoNetVar_East distance player < 10 or 
 		camoNet_East distance player < 10 or 
@@ -99,7 +99,7 @@ _currentSkin = typeOf(player);
 		Ind_IlluminantTower distance player < 30 or 
 		camoNet_Nato distance player < 10)) then {
 		if (s_player_codeRemoveNet < 0) then {
-			s_player_codeRemoveNet = player addaction [("<t color=""#8E11F5"">" + ("Base Owners Remove Object Netting") +"</t>"),"dayz_code\actions\player_remove.sqf","",5,false,true,"",""];
+			s_player_codeRemoveNet = player addaction [("<t color=""#8E11F5"">" + ("Base Owners Remove Camo Net or Tower next to you.") +"</t>"),"dayz_code\actions\player_remove.sqf","",5,false,true,"",""];
 		};
 	} else {
 			player removeAction s_player_codeRemoveNet;
@@ -183,7 +183,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 
 	_isVehicle = _cursorTarget isKindOf "AllVehicles";
 	_isVehicletype = _typeOfCursorTarget in ["ATV_US_EP1","ATV_CZ_EP1"];
-	_isnewstorage = _typeOfCursorTarget in ["VaultStorage","OutHouse_DZ","Wooden_shed_DZ","WoodShack_DZ","StorageShed_DZ"];
+	_isnewstorage = _typeOfCursorTarget in DZE_isNewStorage;
 	
 	// get items and magazines only once
 	_magazinesPlayer = magazines player;
@@ -220,8 +220,8 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 	_isDog =  (_cursorTarget isKindOf "DZ_Pastor" || _cursorTarget isKindOf "DZ_Fin");
 	_isZombie = _cursorTarget isKindOf "zZombie_base";
 	_isDestructable = _cursorTarget isKindOf "BuiltItems";
-	_isWreck = _typeOfCursorTarget in ["SKODAWreck","HMMWVWreck","UralWreck","datsun01Wreck","hiluxWreck","datsun02Wreck","UAZWreck","Land_Misc_Garb_Heap_EP1","Fort_Barricade_EP1","Rubbish2"];
-	_isRemovable = _typeOfCursorTarget in ["Fence_corrugated_DZ","M240Nest_DZ","ParkBench_DZ","SandNest_DZ","Plastic_Pole_EP1_DZ"];
+	_isWreck = _typeOfCursorTarget in DZE_isWreck;
+	_isRemovable = _typeOfCursorTarget in DZE_isRemovable;
 	_isDisallowRepair = _typeOfCursorTarget in ["M240Nest_DZ"];
 
 	_isTent = _cursorTarget isKindOf "TentStorage";
@@ -253,7 +253,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 		_lever = cursorTarget;
 		{dayz_myCursorTarget removeAction _x} forEach s_player_gateActions;s_player_gateActions = [];
 		dayz_myCursorTarget = _lever;
-		_gates = nearestObjects [_lever, ["Hhedgehog_concrete","Concrete_Wall_EP1","WarfareBAirport"], 20];
+		_gates = nearestObjects [_lever, ["Hhedgehog_concrete","Concrete_Wall_EP1"], 15];
 		if (count _gates > 0) then {
 			_handle = dayz_myCursorTarget addAction ["Operate Gate", "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 1, false, true, "", ""];
 			s_player_gateActions set [count s_player_gateActions,_handle];
@@ -264,7 +264,7 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 /*	// Remove Object Custom removal test
 	if((speed player <= 1) && (typeOf(cursortarget) in allbuildables_class) && _hasToolbox && _canDo && !remProc && !procBuild && !removeObject && (_ownerID == dayz_playerUID)) then {
 		if (s_player_deleteBuild < 0) then {
-			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "dayz_code\actions\player_remove.sqf",cursorTarget, 1, true, true, "", ""];
+			s_player_deleteBuild = player addAction [("<t color=""#FF0000"">" + (format[localize "str_actions_delete",_text]) +"</t>"), "dayz_code\actions\player_remove.sqf",cursorTarget, 1, true, true, "", ""];
 		};
 	} else {
 		player removeAction s_player_deleteBuild;
@@ -282,15 +282,9 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 		s_player_enterCode = -1;
 	};
 
-	// Enter Code to remove object
-	if((speed player <= 1) &&
-		(
-			(typeOf(cursortarget) in allbuildables_class)
-		or
-			((isNull cursorTarget) && (camoNetB_East distance player < 10 or camoNetVar_East distance player < 10 or camoNet_East distance player < 10 or camoNetB_Nato distance player < 10 or camoNetVar_Nato distance player < 10 or radar distance player < 30 or Ind_IlluminantTower distance player < 30 or camoNet_Nato distance player < 10))
-		)
-		&& (_ownerID == dayz_playerUID)) then {
-			if (s_player_codeObject < 0) then {
+	// remove object
+	if((speed player <= 1) && (typeOf(cursortarget) in allbuildables_class) && (_ownerID == dayz_playerUID)) then {
+				if (s_player_codeObject < 0) then {
 //				s_player_codeObject = player addaction [("<t color=""#8E11F5"">" + ("Enter Code of Object to remove") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCode.sqf","",5,false,true,"",""];
 				s_player_codeObject = player addAction [("<t color=""#FF0000"">" + (format[localize "str_actions_delete",_text]) +"</t>"), "dayz_code\actions\player_remove.sqf",cursorTarget, 1, true, true, "", ""];
 			};
@@ -298,7 +292,15 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 		player removeAction s_player_codeObject;
 		s_player_codeObject = -1;
 	};
-
+	if((speed player <= 1) && (typeOf(cursortarget) in ["Land_Ind_IlluminantTower","Land_radar","Land_vez"]) && (_ownerID == dayz_playerUID)) then {
+				if (s_player_codeObject < 0) then {
+//				s_player_codeObject = player addaction [("<t color=""#8E11F5"">" + ("Enter Code of Object to remove") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCode.sqf","",5,false,true,"",""];
+				s_player_codeObject = player addAction [("<t color=""#FF0000"">" + (format[localize "str_actions_delete",_text]) +"</t>"), "dayz_code\actions\player_remove.sqf",cursorTarget, 1, true, true, "", ""];
+			};
+	} else {
+		player removeAction s_player_codeObject;
+		s_player_codeObject = -1;
+	};
 /*	
 	// Remove Object from code
 	if((typeOf(cursortarget) in allbuildables_class) && _canDo && removeObject && !procBuild && !remProc) then {
@@ -345,7 +347,13 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 // ##### END #####
 
 	//Allow player to delete objects
+	_player_deleteBuild = false;
 	if((_isWreck or (_isRemovable and ("ItemCrowbar" in _itemsPlayer))) and _hasToolbox and _isAlive) then {
+	_player_deleteBuild = true;
+};			
+		
+	
+	if(_player_deleteBuild) then {
 		if (s_player_deleteBuild < 0) then {
 			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "dayz_code\actions\remove.sqf",_cursorTarget, 1, true, true, "", ""];
 		};

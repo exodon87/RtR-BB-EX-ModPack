@@ -55,34 +55,11 @@ _object_position = {
 		_key call server_hiveWrite;
 };
 
-/*
-_object_inventory = {
-	private["_inventory","_previous","_key"];
-		_inventory = [
-			getWeaponCargo _object,
-			getMagazineCargo _object,
-			getBackpackCargo _object
-		];
-		_previous = str(_object getVariable["lastInventory",[]]);
-		if (str(_inventory) != _previous) then {
-			_object setVariable["lastInventory",_inventory];
-			if (_objectID == "0") then {
-				_key = format["CHILD:309:%1:%2:",_uid,_inventory];
-			} else {
-				_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
-			};
-			diag_log ("HIVE: WRITE: "+ str(_key));
-			_key call server_hiveWrite;
-		};
-};
-*/
-
 // ###COPY START
-_object_inventory = {
 // ### BASE BUILDING 1.2 ### START 
 //This forces object to write to database changing the inventory of the object twice 
 // so it updates the object from operate_gates.sqf 
-
+_object_inventory = {
 	private["_inventory","_previous","_key"];
 	// This writes to database if object is buildable
 	if (typeOf(_object) in allbuildables_class) then {

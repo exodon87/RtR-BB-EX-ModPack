@@ -40,7 +40,7 @@ if (_inMotion == 0) then {
 		
 			_text = getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "displayName");
 			cutText [format["Lowering the %1",_text], "PLAIN DOWN"];
-			_pos set [2,-10.6];
+			_pos set [2,-6.6];
 			_x setPos _pos;
 			[nil,_x,rSAY,["trap_bear_0",60]] call RE;
 		};

@@ -10,7 +10,6 @@ if (!isNull _obj) then {
 _objectID = _obj getVariable["ObjectID","0"];
 _objectUID = _obj getVariable["ObjectUID","0"];
 };
-
 _ownerID = _obj getVariable ["characterID","0"];
 // Pre-Checks
 _dir = direction _obj;
@@ -73,6 +72,27 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 				_qtyG = _recipe select 5;
 			};
 	};
+	playsound "beep";
+	cutText [format["Please wait... Starting de-construction of object %1",typeof(_obj)], "PLAIN DOWN",1];
+	if (cursorTarget isKindOf "Infostand_2_EP1") then {
+			deletevehicle _obj; 	
+		dayzDeleteObj2 = [_objectID,_objectUID];
+	publicVariableServer "dayzDeleteObj2";
+	if (isServer) then {
+		dayzDeleteObj2 call local_deleteObj2;
+		};
+} else {
+		deletevehicle _obj; 	
+		dayzDeleteObj = [_objectID,_objectUID];
+		publicVariableServer "dayzDeleteObj";
+			if (isServer) then {
+			dayzDeleteObj call local_deleteObj;
+			};
+		};
+		sleep 1;
+		playsound "beep";
+		sleep 2;
+		cutText [format["Refunding Owner for object %1",typeof(_obj)], "PLAIN DOWN",1];
 	if (_qtyT > 0) then {
 		for "_i" from 1 to _qtyT do { _result = [player,"ItemTankTrap"] call BIS_fnc_invAdd;  };
 	};
@@ -91,16 +111,17 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 	if (_qtyG > 0) then {
 		for "_i" from 1 to _qtyG do { _result = [player,"HandGrenade_west"] call BIS_fnc_invAdd;  };
 	};
+	sleep 2;
+	playsound "beep";
+	sleep 0.5;
+	playsound "beep";
+	sleep 0.5;
 	cutText [format["Owner refunded for object %1",typeof(_obj)], "PLAIN DOWN",1];
-		dayzDeleteObj = [_objectID,_objectUID];
-	publicVariableServer "dayzDeleteObj";
-	if (isServer) then {
-		dayzDeleteObj call server_deleteObj;
+	sleep 2;
+	breakout "exit";
 	};
-		deletevehicle _obj; 
-		breakout "exit";
 
-};
+
 
 
 		_validObject = _obj getVariable ["validObject",false];
@@ -113,16 +134,16 @@ if ( _ownerID == dayz_characterID ) then {
 };
 
 if ( _ownerID == dayz_playerUID ) then {
-call _func_ownerRemove;
+	call _func_ownerRemove;
 };
-/*
 // ------------------------------------------------------------------------kikyou2 Panel Admin Override Start---------------------------------------------------------------------
 if ((getPlayerUID player) in ["48767622","48779974"]) then {
 	call _func_ownerRemove;
 };
 // ------------------------------------------------------------------------kikyou2 Panel Admin Overide End------------------------------------------------------------------------
-*/
-remProc = true;
+
+
+
 
 //Determine camoNet since camoNets cannot be targeted with Crosshair
 
@@ -131,55 +152,66 @@ switch (true) do
 	case(camoNetB_East distance player < 10 && isNull _obj):
 	{
 		_obj = camoNetB_East;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 	case(camoNetVar_East distance player < 10 && isNull _obj):
 	{
 		_obj = camoNetVar_East;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 	case(camoNet_East distance player < 10 && isNull _obj):
 	{
 		_obj = camoNet_East;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 	case(camoNetB_Nato distance player < 10 && isNull _obj):
 	{
 		_obj = camoNetB_Nato;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 	case(camoNetVar_Nato distance player < 10 && isNull _obj):
 	{
 		_obj = camoNetVar_Nato;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 	case(camoNet_Nato distance player < 10 && isNull _obj):
 	{
 		_obj = camoNet_Nato;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 		case(radar distance player < 30 && isNull _obj):
 	{
 		_obj = radar;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 		case(Ind_IlluminantTower distance player < 30 && isNull _obj):
 	{
 		_obj = Ind_IlluminantTower;
-		_objectID = _obj getVariable["ObjectID",0];
+		_objectID = _obj getVariable["ObjectID","0"];
 		_objectUID = _obj getVariable["ObjectUID","0"];
+		_ownerID = _obj getVariable ["characterID","0"];
 	};
 
 };
 
 
+
+
+remProc = true;
 // Check what object is returned from global array, then return classname
 	for "_i" from 0 to ((count allbuildables) - 1) do
 	{
@@ -394,6 +426,9 @@ cutText [format["You removed a %1 successfully!",_text], "PLAIN DOWN"];
 //	dayzDeleteObj = [_dir, _pos, _objectID, _objectUID];
 	dayzDeleteObj = [_objectID,_objectUID];
 publicVariableServer "dayzDeleteObj";
+//if (isServer) then {
+//	dayzDeleteObj call local_deleteObj;
+//};
 if (isServer) then {
 	dayzDeleteObj call server_deleteObj;
 };

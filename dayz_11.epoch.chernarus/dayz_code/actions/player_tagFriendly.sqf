@@ -5,8 +5,8 @@ _action = _this select 2;
 
 _caller removeAction _action;
 
-_callerID = _caller getVariable ["PlayerUID", 0];
-_targetID = _target getVariable ["PlayerUID", 0];
+_callerID = _caller getVariable ["characterID",dayz_playerUID,"0"];
+_targetID = _target getVariable ["characterID",dayz_playerUID,"0"];
 
 _friendlies = _caller getVariable ["friendlies", []];
 _friendlies set [count _friendlies, _targetID];

@@ -297,6 +297,11 @@ while {!_buildReady} do {
 				_location = getposATL _object;
 				_dir = getDir _object;
 				_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
+				_location = _object modeltoworld [0,0,0];
+				deletevehicle _object;
+				_object = createVehicle [_classname, _location, [], 0, "CAN_COLLIDE"];
+				_object setDir _dir;
+				_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
 				_cntLoop = 50;
 				_inProgress = false;
 					while {speed player == 0 && !_buildReady} do {
@@ -724,10 +729,10 @@ if (_result) then {
 // Send to database
 _fuel = _code / 1000; //added to calculate valid fuel value for the database
 _object setVariable ["characterID",dayz_playerUID,true];
-dayzPublishObj = [dayz_playerUID,_object,[_dir,_location],_classname,_fuel,_code]; //added _code to pass to the publishObj function to prevent calculation errors
-publicVariableServer "dayzPublishObj";
+dayzPublishObj2 = [dayz_playerUID,_object,[_dir,_location],_classname,_fuel,_code]; //added _code to pass to the publishObj function to prevent calculation errors
+publicVariableServer "dayzPublishObj2";
 	if (isServer) then {
-		dayzPublishObj call server_publishObj2;
+		dayzPublishObj2 call server_publishObj2;
 	};
 
 } else {cutText ["You need the EXACT amount of whatever you are trying to build without extras.", "PLAIN DOWN"];call _funcExitScript;};

@@ -72,7 +72,7 @@ _minimumWind = 0;
 _maximumWind = 10;
 
 // Probability in percent for wind to change when weather changes. If set to 0 then wind will never change. If set to 100 then rain will 
-// change every time the weather (for or overcast) start to change. (Suggested value: 25);
+// change every time the weather (fog or overcast) start to change. (Suggested value: 25);
 _windChangeProbability = 25;
 
 // A "rain interval" is defined as "a time interval during which it may rain in any intensity (or it may not rain at all)". When overcast 

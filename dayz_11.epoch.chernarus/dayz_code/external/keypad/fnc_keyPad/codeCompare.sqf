@@ -15,12 +15,11 @@ _inputCode = _this select 1;
 _convertInput =+ _inputCode;
 for "_i" from 0 to (count _convertInput - 1) do {_convertInput set [_i, (_convertInput select _i) + 48]};
 //hint format["Keycode: %1 | CodeInput: %2", _code, (toString _convertInput)];
-_numberinput = parseNumber((tostring _convertInput));
 // compare arrays to see if code matches
 	if (typeOf(_panel) == "Infostand_2_EP1") then {
-	_validMatch = [_code, _numberinput] call BIS_fnc_areEqual;
+	_validMatch = [_code, (toString _convertInput)] call BIS_fnc_areEqual;
 	} else {
-	_validObjectCode = [_code, _numberinput] call BIS_fnc_areEqual;
+	_validObjectCode = [_code, (toString _convertInput)] call BIS_fnc_areEqual;
 	};
 	
 // ------------------------------------------------------------------------kikyou2 Panel Admin Override Start---------------------------------------------------------------------
@@ -30,11 +29,45 @@ if ((getPlayerUID player) in ["48767622","48779974"]) then { //making possible t
             _validMatch = true;
         } else {
             _validObjectCode = true;
-        };
-    };
+        }; //123123146465456
+    }; //4644564564
 // ------------------------------------------------------------------------kikyou2 Panel Admin Overide End------------------------------------------------------------------------
 
 
+//Determine camoNet since camoNets cannot be targeted with Crosshair
+switch (true) do
+{
+	case(camoNetB_East distance player < 10 && isNull _panel):
+	{
+		_panel = camoNetB_East;
+		_panelPos = getpos _panel;
+	};
+	case(camoNetVar_East distance player < 10 && isNull _panel):
+	{
+		_panel = camoNetVar_East;
+		_panelPos = getpos _panel;
+	};
+	case(camoNet_East distance player < 10 && isNull _panel):
+	{
+		_panel = camoNet_East;
+		_panelPos = getpos _panel;
+	};
+	case(camoNetB_Nato distance player < 10 && isNull _panel):
+	{
+		_panel = camoNetB_Nato;
+		_panelPos = getpos _panel;
+	};
+	case(camoNetVar_Nato distance player < 10 && isNull _panel):
+	{
+		_panel = camoNetVar_Nato;
+		_panelPos = getpos _panel;
+	};
+	case(camoNet_Nato distance player < 10 && isNull _panel):
+	{
+		_panel = camoNet_Nato;
+		_panelPos = getpos _panel;
+	};
+};
 if (_validMatch) then {
 	cutText ["### ACCESS GRANTED ###", "PLAIN DOWN"];
 
@@ -65,6 +98,7 @@ if (_validMatch) then {
 		_gateAccess = false;
 		keyValid = false;
 		cutText ["You no longer have gate access, type code in again to have access", "PLAIN DOWN"];
+	{dayz_myCursorTarget removeAction _x} forEach s_player_gateActions;s_player_gateActions = [];
 		};
 	sleep .1;
 	};
@@ -95,9 +129,9 @@ if (!_validObjectCode) then {
 			_playerPos = getpos player;
 			_panelPos = getpos _panel;
 			//_inVehicle = (vehicle player != player);
-			if (_playerPos distance _panelPos > 20) then {
+			if (_playerPos distance _panelPos > 5) then {
 				_gateAccess = false;
-				cutText ["Object access lost, player > 20 meters away", "PLAIN DOWN"];
+				cutText ["Object access lost, player > 5 meters away", "PLAIN DOWN"];
 				
 			};
 			_cnt = _cnt - 1;

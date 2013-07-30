@@ -9,7 +9,7 @@ _pos = _this select 0;
 _isBuildable = _this select 1;
 {
 	[_x, "gear"] call server_updateObject;
-} forEach nearestObjects [_pos, ["Car", "Helicopter", "Motorcycle", "Ship", "TentStorage"], 50];
+} forEach nearestObjects [_pos, ["Car", "Helicopter", "Motorcycle", "Ship", "TentStorage"], 10];
 
 if (_isBuildable) then {
 	diag_log("_isBuildable was called!");

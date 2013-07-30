@@ -14,12 +14,6 @@ call gear_ui_init;
 if(_isWater) exitWith {TradeInprogress = false; cutText [localize "str_player_26", "PLAIN DOWN"];};
 if(_onLadder) exitWith {TradeInprogress = false; cutText [localize "str_player_21", "PLAIN DOWN"];};
 //if(player getVariable["combattimeout", 0] >= time) exitWith {TradeInprogress = false; cutText ["Cannot build while in combat.", "PLAIN DOWN"];};
-if(player getVariable["combattimeout", 0] >= time) then {
-		cutText ["Your currently in combat, time reduced to 3 seconds. \nCanceling/escaping will set you back into combat", "PLAIN DOWN"];
-		sleep 3;
-		_playerCombat setVariable["combattimeout", 0, true];
-		dayz_combat = 0;
-	};
 
 _item =			_this;
 _classname = 	getText (configFile >> "CfgMagazines" >> _item >> "ItemActions" >> "Build" >> "create");
@@ -31,6 +25,7 @@ _text = 		getText (configFile >> "CfgVehicles" >> _classname >> "displayName");
 _offset = 	getArray (configFile >> "CfgVehicles" >> _classname >> "offset");
 
 _isPole = (_classname == "Plastic_Pole_EP1_DZ");
+_isWorkBench = (_classname == "WorkBench_DZ");
 
 _distance = 30;
 _needText = "Plot Pole";
@@ -65,7 +60,7 @@ if(_isPole and _IsNearPlot > 0) exitWith {  TradeInprogress = false; cutText ["C
 if(_IsNearPlot == 0) then {
 
 	// Allow building of plot
-	if(_isPole) then {
+	if(_isPole or _isWorkBench) then {
 		_canBuildOnPlot = true;
 	};
 	
@@ -213,7 +208,7 @@ if (_hasrequireditem) then {
 
 		cutText [format["Placing %1, move to cancel.",_text], "PLAIN DOWN"];
 		
-		_limit = 5;
+		_limit = 3;
 
 		if(isNumber (configFile >> "CfgVehicles" >> _classname >> "constructioncount")) then {
 			_limit = getNumber(configFile >> "CfgVehicles" >> _classname >> "constructioncount");
@@ -295,9 +290,6 @@ if (_hasrequireditem) then {
 				//["dayzPublishObj",[dayz_characterID,_tmpbuilt,[_dir,_location],_classname]] call callRpcProcedure;
 				dayzPublishObj = [dayz_playerUID,_tmpbuilt,[_dir,_location],_classname,_fuel,_code];
 				publicVariableServer "dayzPublishObj";
-	if (isServer) then {
-		dayzPublishObj call server_publishObj2;
-	};
 			} else {
 				deleteVehicle _tmpbuilt;
 				cutText ["Canceled building." , "PLAIN DOWN"];

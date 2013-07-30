@@ -19,6 +19,7 @@ Not all variables are boolean true or false but hopefully you get the idea
 	CODEINPUT 			= [];
 	keyCode 			= [];
 	dayzDeleteObj2		= [];
+	dayzPublishObj2		= [];
 	//Booleans
 	remProc 			= false;
 	hasBuildItem 		= false;
