@@ -292,15 +292,6 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 		player removeAction s_player_codeObject;
 		s_player_codeObject = -1;
 	};
-	if((speed player <= 1) && (typeOf(cursortarget) in ["Land_Ind_IlluminantTower","Land_radar","Land_vez"]) && (_ownerID == dayz_playerUID)) then {
-				if (s_player_codeObject < 0) then {
-//				s_player_codeObject = player addaction [("<t color=""#8E11F5"">" + ("Enter Code of Object to remove") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCode.sqf","",5,false,true,"",""];
-				s_player_codeObject = player addAction [("<t color=""#FF0000"">" + (format[localize "str_actions_delete",_text]) +"</t>"), "dayz_code\actions\player_remove.sqf",cursorTarget, 1, true, true, "", ""];
-			};
-	} else {
-		player removeAction s_player_codeObject;
-		s_player_codeObject = -1;
-	};
 /*	
 	// Remove Object from code
 	if((typeOf(cursortarget) in allbuildables_class) && _canDo && removeObject && !procBuild && !remProc) then {
