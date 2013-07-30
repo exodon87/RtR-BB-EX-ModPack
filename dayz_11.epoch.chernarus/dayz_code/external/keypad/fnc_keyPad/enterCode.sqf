@@ -36,5 +36,5 @@ switch (true) do
 //_dir = direction _lever;
 //_pos = getPosATL _lever;
 	//_uid 	= [_dir,_pos] call dayz_objectUID2;
-keyCode = _lever getVariable ["ObjectUID","0"];
+keyCode = _lever getVariable ["Code","0"]; //changed to "Code" instead of "ObjectUID" to ensure that it gets the right value
 _displayok = createdialog "KeypadGate";

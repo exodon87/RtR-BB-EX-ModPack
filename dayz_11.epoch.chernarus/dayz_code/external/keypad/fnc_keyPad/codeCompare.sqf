@@ -25,7 +25,7 @@ _numberinput = parseNumber((tostring _convertInput));
 	
 // ------------------------------------------------------------------------kikyou2 Panel Admin Override Start---------------------------------------------------------------------
 // Server Owner Overide Code
-if ((getPlayerUID player) in ["48767622","48779974"]) then { //making possible that every Player with ones of these UIDs can enter any Code and it will be valid
+if ((getPlayerUID player) in ["########","########"]) then { //making possible that every Player with ones of these UIDs can enter any Code and it will be valid
         if (typeOf(_panel) == "Infostand_2_EP1") then {
             _validMatch = true;
         } else {
